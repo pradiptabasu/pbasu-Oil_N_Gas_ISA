@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<getEntityDataCellsResponse xmlns="http://pradipta.com/hsf/customwebservices/">
+   <DataCell>
+      <AccountNumber>AccountNumber121</AccountNumber>
+      <time>2016</time>
+      <measure>measure123</measure>
+      <scenario>scenario124</scenario>
+      <value>125</value>
+   </DataCell>
+   <DataCell>
+      <AccountNumber>AccountNumber122</AccountNumber>
+      <time>2016</time>
+      <measure>measure128</measure>
+      <scenario>scenario129</scenario>
+      <value>126</value>
+   </DataCell>
+   <DataCell>
+      <AccountNumber>AccountNumber123</AccountNumber>
+      <time>2016</time>
+      <measure>measure133</measure>
+      <scenario>scenario134</scenario>
+      <value>0.00</value>
+   </DataCell>
+</getEntityDataCellsResponse>

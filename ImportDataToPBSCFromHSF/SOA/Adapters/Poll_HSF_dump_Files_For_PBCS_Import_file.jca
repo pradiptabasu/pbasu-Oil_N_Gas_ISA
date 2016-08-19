@@ -1,0 +1,19 @@
+<adapter-config name="Poll_HSF_dump_Files_For_PBCS_Import" adapter="file"
+                wsdlLocation="../WSDLs/Poll_HSF_dump_Files_For_PBCS_Import.wsdl"
+                xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  <connection-factory location="eis/FileAdapter" UIincludeWildcard="HSF_input_PBCS_*.txt"/>
+  <endpoint-activation portType="Read_ptt" operation="Read">
+    <activation-spec className="oracle.tip.adapter.file.inbound.FileActivationSpec">
+      <property name="DeleteFile" value="false"/>
+      <property name="MinimumAge" value="0"/>
+      <property name="PhysicalDirectory" value="/u01/Oil_n_Gas/unreadDir"/>
+      <property name="Recursive" value="true"/>
+      <property name="PollingFrequency" value="60"/>
+      <property name="PhysicalArchiveDirectory" value="/u01/Oil_n_Gas/readDir"/>
+      <property name="IncludeFiles" value="HSF_input_PBCS_.*\.txt"/>
+      <property name="UseHeaders" value="true"/>
+      <property name="ThreadCount" value="1"/>
+      <property name="PhysicalErrorArchiveDirectory" value="/u01/Oil_n_Gas/errorDir"/>
+    </activation-spec>
+  </endpoint-activation>
+</adapter-config>

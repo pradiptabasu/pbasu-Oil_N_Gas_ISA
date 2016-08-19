@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process xmlns="http://xmlns.oracle.com/Oil_N_Gas_ISA_Workspace/HSFDataExport/HSFDataExportBPELProcess">
+   <AccountDetails>
+      <AccountNumber>AccountNumber25</AccountNumber>
+      <AccountName>AccountName26</AccountName>
+      <Entity>Entity27</Entity>
+   </AccountDetails>
+   <AccountDetails>
+      <AccountNumber>AccountNumber28</AccountNumber>
+      <AccountName>AccountName29</AccountName>
+      <Entity>Entity30</Entity>
+   </AccountDetails>
+   <AccountDetails>
+      <AccountNumber>AccountNumber31</AccountNumber>
+      <AccountName>AccountName32</AccountName>
+      <Entity>Entity33</Entity>
+   </AccountDetails>
+</process>

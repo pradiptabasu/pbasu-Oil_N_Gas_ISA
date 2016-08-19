@@ -1,0 +1,43 @@
+Modified Composite [ ImportDataToPBSCFromHSF ]
+  Composite properties
+	Property [ productVersion ]
+		No change in old and new value 12.1.3.0.0 
+	Property [ compositeID ]
+		No change in old and new value d8ede33a-c3df-4ea9-b44e-471c63705683 
+	Component
+	  Component  [ ImportDataToPBSCFromHSF ]
+	    Property [ jca.retry.count ]
+		No change in old and new value 0 
+	    Property [ bpel.config.oneWayDeliveryPolicy ]
+		No change in old and new value sync.cache 
+	    Property [ bpel.preference.PBCSuserName ]
+		No change in old and new value demoadmin 
+	    Property [ bpel.preference.PBCSpassword ]
+		No change in old and new value Welcome1 
+	    Property [ bpel.preference.PBCSserverUrl ]
+		No change in old and new value http://oa9092.us.oracle.com:9000 
+	    Property [ bpel.preference.PBCSapiVersion ]
+		No change in old and new value v3 
+	    Property [ bpel.preference.PBCSapplicationName ]
+		No change in old and new value OG_PBCS 
+	    Property [ bpel.preference.PBCSjobType ]
+		No change in old and new value IMPORT_DATA 
+	    Property [ bpel.preference.PBCSjobName ]
+		No change in old and new value DataLoadTest 
+	    Property [ bpel.preference.PBCSlog4jLevel ]
+		No change in old and new value INFO 
+	    Property [ bpel.preference.PBCSlog4jLogFileLocation ]
+		No change in old and new value /u01/Oil_n_Gas/springComponentLog 
+	Service
+	  Service  [ Poll_HSF_dump_Files_For_PBCS_Import ]
+	    Service Bindings
+	  	Binding  [ jca ]
+	    Property [ useRejectedMessageRecovery ]
+		No change in old and new value true 
+	  Service  [ test ]
+	  Service  [ Poll_HSF_dump_Files_For_PBCS_Import ]
+	    Service Bindings
+	Reference
+	  Reference  [ PBCS_RestServices_SpringComponent ]
+---End Match for composite [ ImportDataToPBSCFromHSF ] in config plan---
+Checking for replacement in wsdl and schema files

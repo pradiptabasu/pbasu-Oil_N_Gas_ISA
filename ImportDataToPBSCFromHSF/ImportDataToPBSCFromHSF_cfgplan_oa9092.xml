@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAConfigPlan xmlns:jca="http://platform.integration.oracle/blocks/adapter/fw/metadata"
+               xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+               xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy"
+               xmlns:edl="http://schemas.oracle.com/events/edl" xmlns="http://schemas.oracle.com/soa/configplan">
+  <composite name="ImportDataToPBSCFromHSF">
+    <!--Add search and replace rules for the import section of a composite
+	Example:
+	<searchReplace>
+		<search>http://my-dev-server</search>
+		<replace>http://my-test-server</replace>
+	<searchReplace>
+	<searchReplace>
+		<search>8888</search>
+		<replace>8889</replace>
+	<searchReplace>-->
+    <import>
+      <searchReplace>
+        <search/>
+        <replace/>
+      </searchReplace>
+    </import>
+    <service name="Poll_HSF_dump_Files_For_PBCS_Import">
+      <!--Add search and replace rules for the binding properties-->
+      <binding type="jca">
+        <property name="useRejectedMessageRecovery">
+          <replace>true</replace>
+        </property>
+      </binding>
+    </service>
+    <service name="test"/>
+    <service name="Poll_HSF_dump_Files_For_PBCS_Import"/>
+    <property name="productVersion">
+      <replace>12.1.3.0.0</replace>
+    </property>
+    <property name="compositeID">
+      <replace>d8ede33a-c3df-4ea9-b44e-471c63705683</replace>
+    </property>
+    <!--Add search and replace rules for the component properties
+	For components and service/reference bindings, you can add policy references.
+	Example:
+	<component name="*">
+		<wsp:PolicyReference orawsp:category="management" orawsp:status="enabled" URI="oracle/log_policy"/>
+	</component>-->
+    <component name="ImportDataToPBSCFromHSF">
+      <property name="jca.retry.count">
+        <replace>0</replace>
+      </property>
+      <property name="bpel.config.oneWayDeliveryPolicy">
+        <replace>sync.cache</replace>
+      </property>
+      <property name="bpel.preference.PBCSuserName">
+        <replace>demoadmin</replace>
+      </property>
+      <property name="bpel.preference.PBCSpassword">
+        <replace>Welcome1</replace>
+      </property>
+      <property name="bpel.preference.PBCSserverUrl">
+        <replace>http://oa9092.us.oracle.com:9000</replace>
+      </property>
+      <property name="bpel.preference.PBCSapiVersion">
+        <replace>v3</replace>
+      </property>
+      <property name="bpel.preference.PBCSapplicationName">
+        <replace>OG_PBCS</replace>
+      </property>
+      <property name="bpel.preference.PBCSjobType">
+        <replace>IMPORT_DATA</replace>
+      </property>
+      <property name="bpel.preference.PBCSjobName">
+        <replace>DataLoadTest</replace>
+      </property>
+      <property name="bpel.preference.PBCSlog4jLevel">
+        <replace>INFO</replace>
+      </property>
+      <property name="bpel.preference.PBCSlog4jLogFileLocation">
+        <replace>/u01/Oil_n_Gas/springComponentLog</replace>
+      </property>
+    </component>
+    <reference name="PBCS_RestServices_SpringComponent"/>
+  </composite>
+  <!--To configure monitor.config: 
+	<property name="enabled"><replace>true</replace></property>
+	<property name="dataObjectsFolder"><searchReplace><search>mydev</search><replace>myproduction</replace></searchReplace></property>
+	
+	sample properties to configure for file/ftp adapter: 
+	<jca:property name="PhysicalDirectory"><replace>c:\temp</replace></jca:property>
+	<jca:property name="DeleteFile"><replace>true</replace></jca:property>
+	<jca:property name="PollingFrequency"><replace>3</replace></jca:property>
+	
+	To add search and replace rules for wsdls, xsd and jca files
+	Example:
+	<searchReplace>
+		<search>http://my-dev-server</search>
+		<replace>http://my-test-server</replace>
+	<searchReplace>
+	<searchReplace>
+		<search>8888</search>
+		<replace>8889</replace>
+	<searchReplace>
+	-->
+  <!--<wsdlAndSchema name="Adapters/Poll_HSF_dump_Files_For_PBCS_Import_file.jca|WSDLs/ImportHSFdata.wsdl|WSDLs/ImportHSFdataWrapper.wsdl|WSDLs/Poll_HSF_dump_Files_For_PBCS_Import.wsdl|WSDLs/RuntimeFault.wsdl">
+    <searchReplace>
+      <search>/u01/Oil_n_Gas/unreadDir</search>
+      <replace>/u01/Oil_n_Gas/unreadDir1111</replace>
+    </searchReplace>
+  </wsdlAndSchema>
+  <wsdlAndSchema name="Adapters/Poll_HSF_dump_Files_For_PBCS_Import_file.jca">
+    <searchReplace>
+      <search>/u01/Oil_n_Gas/unreadDir</search>
+      <replace>/u01/Oil_n_Gas/unreadDir1111</replace>
+    </searchReplace>
+  </wsdlAndSchema>-->
+  <!--<wsdlAndSchema name="”Adapters/Poll_HSF_dump_Files_For_PBCS_Import_file.jca”">
+    <jca:property name="”PhysicalDirectory”">
+      <searchReplace>
+        <search>/u01/Oil_n_Gas/unreadDir</search>
+        <replace>/u01/Oil_n_Gas/unreadDir</replace>
+      </searchReplace>
+    </jca:property>
+  </wsdlAndSchema>-->
+</SOAConfigPlan>

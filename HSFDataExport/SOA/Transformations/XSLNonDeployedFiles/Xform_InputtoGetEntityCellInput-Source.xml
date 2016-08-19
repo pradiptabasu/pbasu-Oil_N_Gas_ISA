@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<HSFConnectParameters xmlns="http://xmlns.oracle.com/Oil_N_Gas_ISA_Workspace/HSFDataExport/HSFDataExportBPELProcess">
+   <hostname>hostname29</hostname>
+   <port>port30</port>
+   <username>username31</username>
+   <password>password32</password>
+   <server>server33</server>
+   <database>database34</database>
+   <entity>entity35</entity>
+   <measure>measure36</measure>
+   <scenario>scenario37</scenario>
+   <AccountNumber>AccountNumber38</AccountNumber>
+</HSFConnectParameters>

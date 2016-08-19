@@ -1,0 +1,422 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<jdevws:WebServiceProxy xmlns:jdevws="http://xmlns.oracle.com/jdeveloper/10130/webserviceproxy">
+   <list n="CHILD_NODES">
+      <url path="ESSWebService_Service.xml"/>
+      <url path="ESSWebService.wsdl"/>
+      <url path="esswebserviceESSWebServiceAbstract.wsdl"/>
+      <url path="esswebserviceESSTypes.xsd"/>
+      <url path="types/RequestParameter.java"/>
+      <url path="SetStepsArgs.java"/>
+      <url path="ReleaseRequest.java"/>
+      <url path="SchedulerServiceImplPortClient.java"/>
+      <url path="HoldRequest.java"/>
+      <url path="OnJobCompletion.java"/>
+      <url path="CancelRequestResponse.java"/>
+      <url path="GetRequestState.java"/>
+      <url path="SetSubmitArgs.java"/>
+      <url path="RuntimeServiceException.java"/>
+      <url path="types/ObjectFactory.java"/>
+      <url path="GetCompletionStatus.java"/>
+      <url path="RequestNotFoundException.java"/>
+      <url path="types/PostProcessAction.java"/>
+      <url path="RequestNotFoundException_Exception.java"/>
+      <url path="SubmitRequestResponse.java"/>
+      <url path="DeleteRequestResponse.java"/>
+      <url path="IllegalStateException.java"/>
+      <url path="SubmitRecurringRequest.java"/>
+      <url path="types/State.java"/>
+      <url path="GetRequestStateResponse.java"/>
+      <url path="types/ProcessPhase.java"/>
+      <url path="types/package-info.java"/>
+      <url path="SetAsyncRequestStatus.java"/>
+      <url path="types/StepArgs.java"/>
+      <url path="NotFoundException_Exception.java"/>
+      <url path="AddPPActions.java"/>
+      <url path="ReleaseRequestResponse.java"/>
+      <url path="types/RequestExecutionContext.java"/>
+      <url path="GetRequestDetailResponse.java"/>
+      <url path="types/RequestType.java"/>
+      <url path="PurgeRequest.java"/>
+      <url path="NotAllowedException.java"/>
+      <url path="NotFoundException.java"/>
+      <url path="types/AsyncStatus.java"/>
+      <url path="package-info.java"/>
+      <url path="ValidationException.java"/>
+      <url path="GetRequestExecutionContextResponse.java"/>
+      <url path="SetStepsArgsResponse.java"/>
+      <url path="types/DataType.java"/>
+      <url path="SetNLSOptions.java"/>
+      <url path="types/NlsOptions.java"/>
+      <url path="PurgeRequestResponse.java"/>
+      <url path="RuntimeServiceException_Exception.java"/>
+      <url path="types/RequestParameters.java"/>
+      <url path="SubmitRecurringRequestResponse.java"/>
+      <url path="GetRequestDetail.java"/>
+      <url path="ValidationException_Exception.java"/>
+      <url path="IllegalStateException_Exception.java"/>
+      <url path="SetAsyncRequestStatusResponse.java"/>
+      <url path="types/RequestDetail.java"/>
+      <url path="GetRequestExecutionContext.java"/>
+      <url path="AddPPActionsResponse.java"/>
+      <url path="SetNLSOptionsResponse.java"/>
+      <url path="SetSubmitArgsResponse.java"/>
+      <url path="ObjectFactory.java"/>
+      <url path="DeleteRequest.java"/>
+      <url path="ESSWebService_Service.java"/>
+      <url path="NotAllowedException_Exception.java"/>
+      <url path="IllegalArgumentException.java"/>
+      <url path="types/MetadataObjectType.java"/>
+      <url path="types/ErrorType.java"/>
+      <url path="types/MetadataObjectId.java"/>
+      <url path="IllegalArgumentException_Exception.java"/>
+      <url path="SubmitRequest.java"/>
+      <url path="HoldRequestResponse.java"/>
+      <url path="CancelRequest.java"/>
+      <url path="ESSWebService.java"/>
+   </list>
+   <hash n="DATA_MODEL">
+      <value n="ATTACHMENT_ENCODING" v="MIME"/>
+      <list n="LOCAL_FILES"/>
+      <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.WebServiceProxy"/>
+      <url n="ORACLE_WEBSERVICES_XML" path="ESSWebService_Service.xml"/>
+      <hash n="PROPERTY_GROUPS">
+         <hash n="HANDLER_CHAIN_GROUP">
+            <value n="HCG_FILE_PATH" v="ESSWebServiceProxy-HandlerChain.xml"/>
+            <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.java.HandlerChainGroup"/>
+         </hash>
+         <hash n="WSDL_TO_JAVA_PROPERTIES">
+            <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.java.WSDLToJavaProperties"/>
+         </hash>
+      </hash>
+      <value n="PROXY_ASYNC_METHODS" v="FOR_ENABLED"/>
+      <list n="PROXY_CLIENTS">
+         <url path="SchedulerServiceImplPortClient.java"/>
+      </list>
+      <list n="PROXY_HANDLERS"/>
+      <value n="PROXY_MAPPING_URL"/>
+      <url n="PROXY_ORIGINAL_WSDL_URL" protocol="http" host="oa8066.us.oracle.com" port="7003" path="/ess/esswebservice" query="wsdl"/>
+      <hash n="PROXY_PORTS">
+         <hash n="SchedulerServiceImplPort">
+            <value n="ACCESSES_DOC_WRAPPPED" v="true"/>
+            <value n="ACCESSES_RPC_ENCODED" v="false"/>
+            <value n="CLASS_NAME" v="com.oracle.xmlns.scheduler.ESSWebService"/>
+            <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyPort"/>
+            <value n="NAME" v="SchedulerServiceImplPort"/>
+            <hash n="OPERATIONS">
+               <hash n="addPPActions">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="cancelRequest">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="deleteRequest">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="getCompletionStatus">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="getRequestDetail">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="getRequestExecutionContext">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="getRequestState">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="holdRequest">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="purgeRequest">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="releaseRequest">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="setAsyncRequestStatus">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="setNLSOptions">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="setStepsArgs">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="setSubmitArgs">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="submitRecurringRequest">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="submitRequest">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+            </hash>
+            <hash n="PROPERTY_GROUPS">
+               <hash n="WS_POLICY">
+                  <value n="addressing"/>
+                  <hash n="GLOBAL_CONFIG_PROPERTIES"/>
+                  <list n="management"/>
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.policy.PolicyClientModel"/>
+                  <value n="mtom"/>
+                  <hash n="POLICY_OVERRIDE_PROPERTIES"/>
+                  <list n="security">
+                     <string v="oracle/wss_username_token_client_policy"/>
+                  </list>
+                  <list n="wsconfig"/>
+                  <value n="wsrm"/>
+                  <hash n="wss_username_token_client_policy"/>
+               </hash>
+            </hash>
+            <url n="PROXY_ORIGINAL_PORT_ENDPOINT" protocol="http" host="oa8066.us.oracle.com" port="7003" path="/ess/esswebservice"/>
+         </hash>
+      </hash>
+      <value n="PROXY_SERVICE_NAME" v="ESSWebService"/>
+      <value n="PROXY_SERVICE_NAMESPACE" v="http://xmlns.oracle.com/scheduler"/>
+      <url n="PROXY_TARGET_PROJECT" path="../../../../../SOAP_OWSM_SoapHandler_Client.jpr"/>
+      <list n="PROXY_WSDL_IMPORT_LIST">
+         <url path="esswebserviceESSWebServiceAbstract.wsdl"/>
+         <url path="esswebserviceESSTypes.xsd"/>
+      </list>
+      <url n="PROXY_WSDL_URL" path="ESSWebService.wsdl"/>
+      <hash n="REFERENCED_WEBSERVICE">
+         <list n="BD_">
+            <hash>
+               <value n="BOUND_PORT_TYPE" v="{http://xmlns.oracle.com/scheduler}ESSWebService"/>
+               <value n="DEFAULT_NAME" v="false"/>
+               <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPBinding"/>
+               <value n="NAME" v="{http://xmlns.oracle.com/scheduler}ESSWebServiceSoapHttp"/>
+               <list n="OP_BINDINGS">
+                  <hash>
+                     <value n="BOUND_OPERATION" v="long.submitRequest.java.lang.String.com.oracle.xmlns.scheduler.types.MetadataObjectId.java.lang.String.javax.xml.datatype.XMLGregorianCalendar.com.oracle.xmlns.scheduler.types.RequestParameters"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="long.submitRecurringRequest.java.lang.String.com.oracle.xmlns.scheduler.types.MetadataObjectId.com.oracle.xmlns.scheduler.types.MetadataObjectId.com.oracle.xmlns.scheduler.types.MetadataObjectId.java.lang.String.javax.xml.datatype.XMLGregorianCalendar.javax.xml.datatype.XMLGregorianCalendar.com.oracle.xmlns.scheduler.types.RequestParameters"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="void.getCompletionStatus.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="com.oracle.xmlns.scheduler.types.State.getRequestState.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="com.oracle.xmlns.scheduler.types.RequestDetail.getRequestDetail.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="com.oracle.xmlns.scheduler.types.RequestExecutionContext.getRequestExecutionContext.java.lang.String"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="void.holdRequest.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="void.releaseRequest.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="void.setAsyncRequestStatus.java.lang.String.com.oracle.xmlns.scheduler.types.AsyncStatus.java.lang.String"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="void.cancelRequest.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="void.deleteRequest.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="void.purgeRequest.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="com.oracle.xmlns.scheduler.types.RequestParameters.setSubmitArgs.com.oracle.xmlns.scheduler.types.RequestParameters.java.util.List&lt;java.lang.String>"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="com.oracle.xmlns.scheduler.types.RequestParameters.setStepsArgs.com.oracle.xmlns.scheduler.types.RequestParameters.java.util.List&lt;com.oracle.xmlns.scheduler.types.StepArgs>"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="com.oracle.xmlns.scheduler.types.RequestParameters.addPPActions.com.oracle.xmlns.scheduler.types.RequestParameters.java.util.List&lt;com.oracle.xmlns.scheduler.types.PostProcessAction>"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="com.oracle.xmlns.scheduler.types.RequestParameters.setNLSOptions.com.oracle.xmlns.scheduler.types.RequestParameters.com.oracle.xmlns.scheduler.types.NlsOptions"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+               </list>
+               <hash n="PROPERTY_GROUPS"/>
+            </hash>
+         </list>
+         <list n="BINDING_FILES"/>
+         <value n="GUID" v="5016233b-0156-1000-8001-0ab8315d59ad"/>
+         <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.WebServiceProxy$ProxyJavaWebService"/>
+         <list n="PO_">
+            <hash>
+               <value n="DEFAULT_NAME" v="false"/>
+               <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPPort"/>
+               <value n="NAME" v="SchedulerServiceImplPort"/>
+               <value n="PORT_BINDING_NAME" v="{http://xmlns.oracle.com/scheduler}ESSWebServiceSoapHttp"/>
+               <list n="PORT_OPS">
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="long.submitRequest.java.lang.String.com.oracle.xmlns.scheduler.types.MetadataObjectId.java.lang.String.javax.xml.datatype.XMLGregorianCalendar.com.oracle.xmlns.scheduler.types.RequestParameters"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="long.submitRecurringRequest.java.lang.String.com.oracle.xmlns.scheduler.types.MetadataObjectId.com.oracle.xmlns.scheduler.types.MetadataObjectId.com.oracle.xmlns.scheduler.types.MetadataObjectId.java.lang.String.javax.xml.datatype.XMLGregorianCalendar.javax.xml.datatype.XMLGregorianCalendar.com.oracle.xmlns.scheduler.types.RequestParameters"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="void.getCompletionStatus.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="com.oracle.xmlns.scheduler.types.State.getRequestState.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="com.oracle.xmlns.scheduler.types.RequestDetail.getRequestDetail.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="com.oracle.xmlns.scheduler.types.RequestExecutionContext.getRequestExecutionContext.java.lang.String"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="void.holdRequest.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="void.releaseRequest.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="void.setAsyncRequestStatus.java.lang.String.com.oracle.xmlns.scheduler.types.AsyncStatus.java.lang.String"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="void.cancelRequest.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="void.deleteRequest.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="void.purgeRequest.long"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="com.oracle.xmlns.scheduler.types.RequestParameters.setSubmitArgs.com.oracle.xmlns.scheduler.types.RequestParameters.java.util.List&lt;java.lang.String>"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="com.oracle.xmlns.scheduler.types.RequestParameters.setStepsArgs.com.oracle.xmlns.scheduler.types.RequestParameters.java.util.List&lt;com.oracle.xmlns.scheduler.types.StepArgs>"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="com.oracle.xmlns.scheduler.types.RequestParameters.addPPActions.com.oracle.xmlns.scheduler.types.RequestParameters.java.util.List&lt;com.oracle.xmlns.scheduler.types.PostProcessAction>"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="com.oracle.xmlns.scheduler.types.RequestParameters.setNLSOptions.com.oracle.xmlns.scheduler.types.RequestParameters.com.oracle.xmlns.scheduler.types.NlsOptions"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+               </list>
+               <hash n="PROPERTY_GROUPS"/>
+               <url n="URL" protocol="http" host="oa8066.us.oracle.com" port="7003" path="/ess/esswebservice"/>
+            </hash>
+         </list>
+         <hash n="PROPERTY_GROUPS">
+            <hash n="WSDL_TO_JAVA_PROPERTIES">
+               <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.java.WSDLToJavaProperties"/>
+            </hash>
+         </hash>
+         <list n="PT_">
+            <hash>
+               <value n="AUTO_SERVICE_INTERFACE"/>
+               <value n="DEFAULT_NAME" v="false"/>
+               <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.java.JavaPortType"/>
+               <value n="NAME" v="{http://xmlns.oracle.com/scheduler}ESSWebService"/>
+               <hash n="PROPERTY_GROUPS"/>
+               <value n="PT_CLASS" v="com.oracle.xmlns.scheduler.ESSWebServiceImpl"/>
+               <value n="PT_SERVICE_INTERFACE" v="com.oracle.xmlns.scheduler.ESSWebService"/>
+               <value n="PT_TOP_DOWN_GENERATED_SEI_NAME" v="com.oracle.xmlns.scheduler.ESSWebService"/>
+            </hash>
+            <hash>
+               <value n="AUTO_SERVICE_INTERFACE"/>
+               <value n="DEFAULT_NAME" v="false"/>
+               <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.java.JavaPortType"/>
+               <value n="NAME" v="{http://xmlns.oracle.com/scheduler}ESSWebServiceCallback"/>
+               <hash n="PROPERTY_GROUPS"/>
+               <value n="PT_CLASS" v="com.oracle.xmlns.scheduler.ESSWebServiceCallbackImpl"/>
+               <value n="PT_SERVICE_INTERFACE" v="com.oracle.xmlns.scheduler.ESSWebServiceCallback"/>
+               <value n="PT_TOP_DOWN_GENERATED_SEI_NAME" v="com.oracle.xmlns.scheduler.ESSWebServiceCallback"/>
+            </hash>
+         </list>
+         <url n="TARGET_PROJECT" path="../../../../../SOAP_OWSM_SoapHandler_Client.jpr"/>
+         <value n="WS_CREATE_ONEWAY_OPERATIONS" v="true"/>
+         <value n="WS_ORIG_GEN_DIRECTION" v="TOP_DOWN"/>
+         <value n="WS_TARGET_NAMESPACE" v="http://xmlns.oracle.com/scheduler"/>
+         <value n="WS_URI" v="ESSWebService"/>
+         <url n="WS_WSDL_FILE" path="ESSWebService.wsdl"/>
+      </hash>
+      <value n="SERVICE_ASYNC" v="false"/>
+      <value n="USE_WSDL_LOCATION" v="true"/>
+   </hash>
+</jdevws:WebServiceProxy>

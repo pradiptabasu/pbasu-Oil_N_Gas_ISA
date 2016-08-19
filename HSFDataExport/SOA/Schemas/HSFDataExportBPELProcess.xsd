@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/Oil_N_Gas_ISA_Workspace/HSFDataExport/HSFDataExportBPELProcess" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="process">
+      <complexType>
+         <sequence>
+            <element name="AccountDetails" maxOccurs="unbounded">
+               <complexType>
+                  <sequence>
+                     <element name="AccountNumber" type="string"/>
+                     <element name="AccountName" type="string"/>
+                     <element name="Entity" type="string"/>
+                  </sequence>
+               </complexType>
+            </element>
+            <element name="ListofTime" maxOccurs="1" minOccurs="0">
+               <complexType>
+                  <sequence>
+                     <element name="TimeInYear" type="string" maxOccurs="unbounded" />
+                  </sequence>
+               </complexType>
+            </element>
+         </sequence>
+      </complexType>
+   </element>
+   <element name="HSFConnectParameters">
+      <complexType>
+         <sequence>
+            <element name="hostname" type="string" maxOccurs="1" minOccurs="1"/>
+            <element name="port" type="string" maxOccurs="1" minOccurs="1"/>
+            <element name="username" type="string" maxOccurs="1" minOccurs="1"/>
+            <element name="password" type="string" maxOccurs="1" minOccurs="1"/>
+            <element name="server" type="string" maxOccurs="1" minOccurs="1"/>
+            <element name="database" type="string" maxOccurs="1" minOccurs="1"/>
+            <element name="entity" type="string" maxOccurs="1" minOccurs="1"/>
+            <element name="measure" type="string" maxOccurs="1" minOccurs="1"/>
+            <element name="scenario" type="string" maxOccurs="1" minOccurs="1"/>
+            <element name="AccountNumber" type="string"/>
+         </sequence>
+      </complexType>
+   </element>
+</schema>

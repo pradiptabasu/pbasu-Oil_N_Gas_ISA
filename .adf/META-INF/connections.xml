@@ -1,0 +1,226 @@
+<References xmlns="http://xmlns.oracle.com/adf/jndi">
+  <Reference name="EnterpriseSchedulerService"
+             className="oracle.adf.model.connection.webservice.impl.WebServiceConnectionImpl" xmlns="">
+    <Factory className="oracle.adf.model.connection.webservice.api.WebServiceConnectionFactory"/>
+    <RefAddresses>
+      <XmlRefAddr addrType="WebServiceConnection">
+        <Contents>
+          <wsconnection description="http://oa8066.us.oracle.com:7003/ess/esswebservice?wsdl"
+                        service="{http://xmlns.oracle.com/scheduler}ESSWebService">
+            <model name="{http://xmlns.oracle.com/scheduler}ESSWebService" xmlns="http://oracle.com/ws/model">
+              <service name="{http://xmlns.oracle.com/scheduler}ESSWebService">
+                <port name="SchedulerServiceImplPort"
+                      binding="{http://xmlns.oracle.com/scheduler}ESSWebServiceSoapHttp">
+                  <soap addressUrl="http://oa8066.us.oracle.com:7003/ess/esswebservice"
+                        xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                  <operation name="submitRequest">
+                    <soap soapAction="submitRequest" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="submitRecurringRequest">
+                    <soap soapAction="submitRecurringRequest" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="getCompletionStatus">
+                    <soap soapAction="getCompletionStatus" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="getRequestState">
+                    <soap soapAction="getRequestState" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="getRequestDetail">
+                    <soap soapAction="getRequestDetail" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="getRequestExecutionContext">
+                    <soap soapAction="getRequestExecutionContext" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="holdRequest">
+                    <soap soapAction="holdRequest" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="releaseRequest">
+                    <soap soapAction="releaseRequest" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="setAsyncRequestStatus">
+                    <soap soapAction="setAsyncRequestStatus" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="cancelRequest">
+                    <soap soapAction="cancelRequest" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="deleteRequest">
+                    <soap soapAction="deleteRequest" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="purgeRequest">
+                    <soap soapAction="purgeRequest" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="setSubmitArgs">
+                    <soap soapAction="setSubmitArgs" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="setStepsArgs">
+                    <soap soapAction="setStepsArgs" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="addPPActions">
+                    <soap soapAction="addPPActions" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="setNLSOptions">
+                    <soap soapAction="setNLSOptions" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                </port>
+              </service>
+              <service name="{http://xmlns.oracle.com/scheduler}ESSWebServiceCallback">
+                <port name="callbackPort" binding="{http://xmlns.oracle.com/scheduler}ESSWebServiceCallbackSoapHttp">
+                  <soap addressUrl="REPLACE_WITH_ACTUAL_URL" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                  <operation name="onJobCompletion">
+                    <soap soapAction="onJobCompletion" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                </port>
+              </service>
+            </model>
+          </wsconnection>
+        </Contents>
+      </XmlRefAddr>
+    </RefAddresses>
+  </Reference>
+  <Reference name="EnterpriseSchedulerServices"
+             className="oracle.adf.model.connection.webservice.impl.WebServiceConnectionImpl" xmlns="">
+    <Factory className="oracle.adf.model.connection.webservice.api.WebServiceConnectionFactory"/>
+    <RefAddresses>
+      <XmlRefAddr addrType="WebServiceConnection">
+        <Contents>
+          <wsconnection description="http://oa8066.us.oracle.com:7003/ess/esswebservice?wsdl"
+                        service="{http://xmlns.oracle.com/scheduler}ESSWebService">
+            <model name="{http://xmlns.oracle.com/scheduler}ESSWebService" xmlns="http://oracle.com/ws/model">
+              <service name="{http://xmlns.oracle.com/scheduler}ESSWebService">
+                <port name="SchedulerServiceImplPort"
+                      binding="{http://xmlns.oracle.com/scheduler}ESSWebServiceSoapHttp">
+                  <soap addressUrl="http://oa8066.us.oracle.com:7003/ess/esswebservice"
+                        xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                  <operation name="submitRequest">
+                    <soap soapAction="submitRequest" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="submitRecurringRequest">
+                    <soap soapAction="submitRecurringRequest" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="getCompletionStatus">
+                    <soap soapAction="getCompletionStatus" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="getRequestState">
+                    <soap soapAction="getRequestState" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="getRequestDetail">
+                    <soap soapAction="getRequestDetail" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="getRequestExecutionContext">
+                    <soap soapAction="getRequestExecutionContext" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="holdRequest">
+                    <soap soapAction="holdRequest" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="releaseRequest">
+                    <soap soapAction="releaseRequest" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="setAsyncRequestStatus">
+                    <soap soapAction="setAsyncRequestStatus" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="cancelRequest">
+                    <soap soapAction="cancelRequest" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="deleteRequest">
+                    <soap soapAction="deleteRequest" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="purgeRequest">
+                    <soap soapAction="purgeRequest" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="setSubmitArgs">
+                    <soap soapAction="setSubmitArgs" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="setStepsArgs">
+                    <soap soapAction="setStepsArgs" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="addPPActions">
+                    <soap soapAction="addPPActions" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                  <operation name="setNLSOptions">
+                    <soap soapAction="setNLSOptions" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                </port>
+              </service>
+              <service name="{http://xmlns.oracle.com/scheduler}ESSWebServiceCallback">
+                <port name="callbackPort" binding="{http://xmlns.oracle.com/scheduler}ESSWebServiceCallbackSoapHttp">
+                  <soap addressUrl="REPLACE_WITH_ACTUAL_URL" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                  <operation name="onJobCompletion">
+                    <soap soapAction="onJobCompletion" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                    <input name=""/>
+                    <output name=""/>
+                  </operation>
+                </port>
+              </service>
+            </model>
+          </wsconnection>
+        </Contents>
+      </XmlRefAddr>
+    </RefAddresses>
+  </Reference>
+</References>

@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>ImportDataToPBSCFromHSF.componentType</file>
+      <name>ImportDataToPBSCFromHSF.componentType</name>
+      <fix/>
+      <msg>property "jca.retry.count" may not be understood by BPEL component ImportDataToPBSCFromHSF - it will likely be ignored.</msg>
+   </Fault>
+</Faults>

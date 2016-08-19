@@ -1,0 +1,204 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Thu Jul 07 11:04:37 IST 2016
+  Author:  pkradhak
+  Type: BPEL 2.0 Process
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="HSFDataExportBPELProcess"
+               targetNamespace="http://xmlns.oracle.com/Oil_N_Gas_ISA_Workspace/HSFDataExport/HSFDataExportBPELProcess"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/Oil_N_Gas_ISA_Workspace/HSFDataExport/HSFDataExportBPELProcess"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:ui="http://xmlns.oracle.com/soa/designer"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://pradipta.com/hsf/customwebservices/"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/file/Oil_N_Gas_ISA_Workspace/HSFDataExport/WritefileReference"
+         xmlns:ns3="http://xmlns.oracle.com/ias/pcbpel/NotificationService">
+  <import namespace="http://xmlns.oracle.com/Oil_N_Gas_ISA_Workspace/HSFDataExport/HSFDataExportBPELProcess"
+          location="../Schemas/HSFDataExportBPELProcess.xsd" importType="http://www.w3.org/2001/XMLSchema"/>
+  <import ui:processWSDL="true" namespace="http://xmlns.oracle.com/Oil_N_Gas_ISA_Workspace/HSFDataExport/HSFDataExportBPELProcess" location="../WSDLs/HSFDataExportBPELProcess.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="HSFDataExportbpelprocess_client" partnerLinkType="client:HSFDataExportBPELProcess" myRole="HSFDataExportBPELProcessProvider"/>
+    <partnerLink name="HSFCustomWSSOAPReference" partnerLinkType="ns1:HSFCustomWSSOAPReference" partnerRole="CustomHSFWebService"/>
+    <partnerLink name="WritefileReference" partnerLinkType="ns2:Write_plt" partnerRole="Write_role"/>
+    <partnerLink name="NotificationService1" partnerLinkType="ns3:NotificationServiceLink"
+                 partnerRole="NotificationServiceProvider"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:HSFDataExportBPELProcessRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="getEntityDataCell_Invoke_OutputVariable" messageType="ns1:getEntityDataCellsResponse"/>
+    <variable name="getEntityDataCell_Invoke_InputVariable" messageType="ns1:getEntityDataCellsRequest"/>
+    <variable name="HSFConnectParameters" element="client:HSFConnectParameters"/>
+    <variable name="WriteFile_Invoke_InputVariable" messageType="ns2:Write_msg"/>
+  </variables>
+  <faultHandlers>
+    <catchAll>
+      <sequence>
+        <scope name="Email_HSFDataExport_Exception">
+          <bpelx:annotation>
+            <bpelx:pattern patternName="bpelx:email"></bpelx:pattern>
+          </bpelx:annotation>
+          <variables>
+            <variable name="varNotificationReq" messageType="ns3:EmailNotificationRequest"/>
+            <variable name="varNotificationResponse" messageType="ns3:ArrayOfResponse"/>
+            <variable name="NotificationServiceFaultVariable" messageType="ns3:NotificationServiceErrorMessage"/>
+          </variables>
+          <sequence name="Sequence1">
+            <assign name="EmailParamsAssign">
+              <copy>
+                <from>string('Default')</from>
+                <to variable="varNotificationReq" part="EmailPayload"><query>ns3:FromAccountName</query></to>
+              </copy>
+              <copy>
+                <from>string('')</from>
+                <to variable="varNotificationReq" part="EmailPayload"><query>ns3:Bcc</query></to>
+              </copy>
+              <copy>
+                <from>ora:getPreference("errorNotificationEmailCcReceipient")</from>
+                <to variable="varNotificationReq" part="EmailPayload"><query>ns3:Cc</query></to>
+              </copy>
+              <copy>
+                <from>ora:getPreference("errorNotificationEmailReplyToReceipient")</from>
+                <to variable="varNotificationReq" part="EmailPayload"><query>ns3:ReplyToAddress</query></to>
+              </copy>
+              <copy>
+                <from>concat('HSFDataExport_Exception on Instance FlowID : ', ora:getFlowId())</from>
+                <to variable="varNotificationReq" part="EmailPayload"><query>ns3:Subject</query></to>
+              </copy>
+              <copy>
+                <from>ora:getPreference("errorNotificationEmailToReceipient")</from>
+                <to variable="varNotificationReq" part="EmailPayload"><query>ns3:To</query></to>
+              </copy>
+              <copy>
+                <from>string('')</from>
+                <to variable="varNotificationReq" part="EmailPayload"><query>ns3:Content/ns3:ContentBody</query></to>
+              </copy>
+              <copy>
+                <from>string('text/html; charset=UTF-8')</from>
+                <to variable="varNotificationReq" part="EmailPayload"><query>ns3:Content/ns3:MimeType</query></to>
+              </copy>
+            </assign>
+            <invoke name="InvokeNotificationService" portType="ns3:NotificationService"
+                    partnerLink="NotificationService1" inputVariable="varNotificationReq"
+                    outputVariable="varNotificationResponse" operation="sendEmailNotification"/>
+          </sequence>
+        </scope>
+        <exit name="Exit"/>
+      </sequence>
+    </catchAll>
+  </faultHandlers>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in HSFDataExportBPELProcess.wsdl) -->
+    <receive name="receiveInput" partnerLink="HSFDataExportbpelprocess_client" portType="client:HSFDataExportBPELProcess" operation="process" variable="inputVariable" createInstance="yes"/>
+    <assign name="Assign_get_HSFWebServiceParameters">
+      <copy>
+        <from>ora:getPreference("hostname")</from>
+        <to>$HSFConnectParameters/client:hostname</to>
+      </copy>
+      <copy>
+        <from>ora:getPreference("port")</from>
+        <to>$HSFConnectParameters/client:port</to>
+      </copy>
+      <copy>
+        <from>ora:getPreference("username")</from>
+        <to>$HSFConnectParameters/client:username</to>
+      </copy>
+      <copy>
+        <from>ora:getPreference("password")</from>
+        <to>$HSFConnectParameters/client:password</to>
+      </copy>
+      <copy>
+        <from>ora:getPreference("server")</from>
+        <to>$HSFConnectParameters/client:server</to>
+      </copy>
+      <copy>
+        <from>ora:getPreference("database")</from>
+        <to>$HSFConnectParameters/client:database</to>
+      </copy>
+      <copy>
+        <from>ora:getPreference("entity")</from>
+        <to>$HSFConnectParameters/client:entity</to>
+      </copy>
+      <copy>
+        <from>ora:getPreference("measure")</from>
+        <to>$HSFConnectParameters/client:measure</to>
+      </copy>
+      <copy>
+        <from>ora:getPreference("scenario")</from>
+        <to>$HSFConnectParameters/client:scenario</to>
+      </copy>
+    </assign>
+    <assign name="Xform_HSFWebServiceParameters">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from>ora:doXSLTransformForDoc("../Transformations/Xform_InputtoGetEntityCellInput.xsl", $HSFConnectParameters, "inputVariable.payload", $inputVariable.payload)</from>
+        <to variable="getEntityDataCell_Invoke_InputVariable" part="request"/>
+      </copy>
+    </assign>
+    <repeatUntil name="RepeatUntil_HSF_API_Returns_Data">
+      <invoke name="getEntityDataCell_Invoke" partnerLink="HSFCustomWSSOAPReference" portType="ns1:CustomHSFWebService"
+              operation="getEntityDataCells" inputVariable="getEntityDataCell_Invoke_InputVariable"
+              outputVariable="getEntityDataCell_Invoke_OutputVariable" bpelx:invokeAsDetail="no"/>
+      <condition>ora:countNodes('getEntityDataCell_Invoke_OutputVariable','response','ns1:DataCell') &gt; 0</condition>
+    </repeatUntil>
+    <assign name="Xform_WritePayload">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from>ora:doXSLTransformForDoc("../Transformations/Xform_WriteFile.xsl", $getEntityDataCell_Invoke_OutputVariable.response, "inputVariable.payload", $inputVariable.payload)</from>
+        <to variable="WriteFile_Invoke_InputVariable" part="body"/>
+      </copy>
+    </assign>
+    <invoke name="WriteFile_Invoke" bpelx:invokeAsDetail="no" partnerLink="WritefileReference"
+            portType="ns2:Write_ptt" operation="Write" inputVariable="WriteFile_Invoke_InputVariable"/>
+    <!-- Generate reply to synchronous request -->
+  </sequence>
+</process>

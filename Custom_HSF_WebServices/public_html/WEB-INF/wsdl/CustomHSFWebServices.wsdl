@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions targetNamespace="http://pradipta.com/hsf/customwebservices/" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="http://pradipta.com/hsf/customwebservices/"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <xsd:schema targetNamespace="http://pradipta.com/hsf/customwebservices/" elementFormDefault="qualified">
+      <xsd:element name="getEntityDataCellsRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="HSFConnectParameters" maxOccurs="1">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="hostname" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                  <xsd:element name="port" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                  <xsd:element name="username" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                  <xsd:element name="password" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                  <xsd:element name="server" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                  <xsd:element name="database" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                  <xsd:element name="entity" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="HSFFetchParameters" maxOccurs="1">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="measure" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                  <xsd:element name="scenario" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                  <xsd:element name="ListOfTime" maxOccurs="1">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="time" maxOccurs="unbounded" minOccurs="1" type="xsd:string"/>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                  <xsd:element name="ListOfAccounts" maxOccurs="1">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="AccountNumber" maxOccurs="unbounded" minOccurs="1" type="xsd:string"/>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getEntityDataCellsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="DataCell" maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="AccountNumber" maxOccurs="1" minOccurs="1" type="xsd:string"/>
+                  <xsd:element name="time" maxOccurs="1" minOccurs="1" type="xsd:string"/>
+                  <xsd:element name="measure" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                  <xsd:element name="scenario" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                  <xsd:element name="value" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getEntityDataCellsFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="faultString" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+            <xsd:element name="faultCode" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+            <xsd:element name="faultDetail" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+  <message name="getEntityDataCellsRequest">
+    <part name="request" element="tns:getEntityDataCellsRequest"/>
+  </message>
+  <message name="getEntityDataCellsResponse">
+    <part name="response" element="tns:getEntityDataCellsResponse"/>
+  </message>
+  <portType name="CustomHSFWebService">
+    <operation name="getEntityDataCells">
+      <input message="tns:getEntityDataCellsRequest"/>
+      <output message="tns:getEntityDataCellsResponse"/>
+      <fault message="tns:getEntityDataCellsFault" name="fault"/>
+    </operation>
+  </portType>
+  <message name="getEntityDataCellsFault">
+    <part name="fault" element="tns:getEntityDataCellsFault"/>
+  </message>
+  <binding name="CustomHSFWebServiceSOAP11" type="tns:CustomHSFWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getEntityDataCells">
+      <soap:operation style="document" soapAction="http://pradipta.com/hsf/customwebservices//getEntityDataCells"/>
+      <input>
+        <soap:body use="literal" parts="request"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="response"/>
+      </output>
+      <fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="CustomHSFWebService">
+    <port name="HSFWebServiceSoap11" binding="tns:CustomHSFWebServiceSOAP11">
+      <soap:address location="http://www.example.com"/>
+    </port>
+  </service>
+</definitions>

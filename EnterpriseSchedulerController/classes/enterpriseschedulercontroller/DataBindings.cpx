@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.1.3.10.8" id="DataBindings"
+             SeparateXMLFiles="false" Package="enterpriseschedulercontroller" ClientType="Generic">
+  <pageMap>
+    <page path="/CustomESSController.jspx" usageId="enterpriseschedulercontroller_CustomESSControllerPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="enterpriseschedulercontroller_CustomESSControllerPageDef"
+          path="enterpriseschedulercontroller.pageDefs.CustomESSControllerPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <dc id="EnterpriseSchedulerServices" path="enterpriseschedulercontroller.EnterpriseSchedulerServices"/>
+  </dataControlUsages>
+</Application>

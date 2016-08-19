@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ImportHSFdata" targetNamespace="http://pbcs.pradipta.com/" xmlns:tns="http://pbcs.pradipta.com/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://pbcs.pradipta.com/" xmlns:tns="http://pbcs.pradipta.com/"
+                    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:complexType name="deleteFile">
+                <xsd:sequence>
+                    <xsd:element name="userName" type="xsd:string"/>
+                    <xsd:element name="password" type="xsd:string"/>
+                    <xsd:element name="serverUrl" type="xsd:string"/>
+                    <xsd:element name="apiVersion" type="xsd:string"/>
+                    <xsd:element name="applicationName" type="xsd:string"/>
+                    <xsd:element name="fileName" type="xsd:string"/>
+                    <xsd:element name="instanceId" type="xsd:string"/>
+                    <xsd:element name="log4jLevel" type="xsd:string"/>
+                    <xsd:element name="log4jLogFileLocation" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="deleteFile" type="tns:deleteFile"/>
+            <xsd:complexType name="deleteFileResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="deleteFileResponse" type="tns:deleteFileResponse"/>
+            <xsd:complexType name="uploadFile">
+                <xsd:sequence>
+                    <xsd:element name="userName" type="xsd:string"/>
+                    <xsd:element name="password" type="xsd:string"/>
+                    <xsd:element name="serverUrl" type="xsd:string"/>
+                    <xsd:element name="apiVersion" type="xsd:string"/>
+                    <xsd:element name="applicationName" type="xsd:string"/>
+                    <xsd:element name="filePath" type="xsd:string"/>
+                    <xsd:element name="fileName" type="xsd:string"/>
+                    <xsd:element name="instanceId" type="xsd:string"/>
+                    <xsd:element name="log4jLevel" type="xsd:string"/>
+                    <xsd:element name="log4jLogFileLocation" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="uploadFile" type="tns:uploadFile"/>
+            <xsd:complexType name="uploadFileResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="uploadFileResponse" type="tns:uploadFileResponse"/>
+            <xsd:complexType name="executeJob">
+                <xsd:sequence>
+                    <xsd:element name="userName" type="xsd:string"/>
+                    <xsd:element name="password" type="xsd:string"/>
+                    <xsd:element name="serverUrl" type="xsd:string"/>
+                    <xsd:element name="apiVersion" type="xsd:string"/>
+                    <xsd:element name="applicationName" type="xsd:string"/>
+                    <xsd:element name="jobType" type="xsd:string"/>
+                    <xsd:element name="jobName" type="xsd:string"/>
+                    <xsd:element name="fileName" type="xsd:string"/>
+                    <xsd:element name="instanceId" type="xsd:string"/>
+                    <xsd:element name="log4jLevel" type="xsd:string"/>
+                    <xsd:element name="log4jLogFileLocation" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="executeJob" type="tns:executeJob"/>
+            <xsd:complexType name="executeJobResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="executeJobResponse" type="tns:executeJobResponse"/>
+            <xsd:complexType name="moveFile">
+                <xsd:sequence>
+                    <xsd:element name="filePath" type="xsd:string"/>
+                    <xsd:element name="fileName" type="xsd:string"/>
+                    <xsd:element name="status" type="xsd:string"/>
+                    <xsd:element name="instanceId" type="xsd:string"/>
+                    <xsd:element name="log4jLevel" type="xsd:string"/>
+                    <xsd:element name="log4jLogFileLocation" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="moveFile" type="tns:moveFile"/>
+            <xsd:complexType name="moveFileResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="moveFileResponse" type="tns:moveFileResponse"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="deleteFileInput">
+        <wsdl:part name="parameters" element="tns:deleteFile"/>
+    </wsdl:message>
+    <wsdl:message name="deleteFileOutput">
+        <wsdl:part name="parameters" element="tns:deleteFileResponse"/>
+    </wsdl:message>
+    <wsdl:message name="uploadFileInput">
+        <wsdl:part name="parameters" element="tns:uploadFile"/>
+    </wsdl:message>
+    <wsdl:message name="uploadFileOutput">
+        <wsdl:part name="parameters" element="tns:uploadFileResponse"/>
+    </wsdl:message>
+    <wsdl:message name="executeJobInput">
+        <wsdl:part name="parameters" element="tns:executeJob"/>
+    </wsdl:message>
+    <wsdl:message name="executeJobOutput">
+        <wsdl:part name="parameters" element="tns:executeJobResponse"/>
+    </wsdl:message>
+    <wsdl:message name="moveFileInput">
+        <wsdl:part name="parameters" element="tns:moveFile"/>
+    </wsdl:message>
+    <wsdl:message name="moveFileOutput">
+        <wsdl:part name="parameters" element="tns:moveFileResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CustomJavaFaultMessage">
+        <wsdl:part name="code" type="xsd:string"/>
+        <wsdl:part name="summary" type="xsd:string"/>
+        <wsdl:part name="detail" type="xsd:string"/>
+    </wsdl:message>
+    <wsdl:portType name="ImportHSFdata">
+        <wsdl:operation name="deleteFile">
+            <wsdl:input message="tns:deleteFileInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                        ns1:Action=""/>
+            <wsdl:output message="tns:deleteFileOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                         ns1:Action=""/>
+            <wsdl:fault message="tns:CustomJavaFaultMessage" name="CustomJavaFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="uploadFile">
+            <wsdl:input message="tns:uploadFileInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                        ns1:Action=""/>
+            <wsdl:output message="tns:uploadFileOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                         ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="executeJob">
+            <wsdl:input message="tns:executeJobInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                        ns1:Action=""/>
+            <wsdl:output message="tns:executeJobOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                         ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="moveFile">
+            <wsdl:input message="tns:moveFileInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                        ns1:Action=""/>
+            <wsdl:output message="tns:moveFileOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                         ns1:Action=""/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

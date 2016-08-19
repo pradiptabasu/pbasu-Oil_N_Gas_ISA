@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle-webservice-clients xmlns:ns1="http://java.sun.com/xml/ns/javaee">
+   <webservice-client>
+      <service-qname namespaceURI="http://xmlns.oracle.com/scheduler" localpart="ESSWebService"/>
+      <port-info>
+         <wsdl-port namespaceURI="http://xmlns.oracle.com/scheduler" localpart="SchedulerServiceImplPort"/>
+         <runtime/>
+         <policy-references>
+            <policy-reference category="security" uri="oracle/wss_username_token_client_policy"/>
+         </policy-references>
+         <operations>
+            <operation name="submitRequest"/>
+            <operation name="submitRecurringRequest"/>
+            <operation name="getCompletionStatus"/>
+            <operation name="getRequestState"/>
+            <operation name="getRequestDetail"/>
+            <operation name="getRequestExecutionContext"/>
+            <operation name="holdRequest"/>
+            <operation name="releaseRequest"/>
+            <operation name="setAsyncRequestStatus"/>
+            <operation name="cancelRequest"/>
+            <operation name="deleteRequest"/>
+            <operation name="purgeRequest"/>
+            <operation name="setSubmitArgs"/>
+            <operation name="setStepsArgs"/>
+            <operation name="addPPActions"/>
+            <operation name="setNLSOptions"/>
+         </operations>
+      </port-info>
+   </webservice-client>
+</oracle-webservice-clients>

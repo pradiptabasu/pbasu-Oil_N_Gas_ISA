@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="HSFDataExportBPELProcess" targetNamespace="http://xmlns.oracle.com/Oil_N_Gas_ISA_Workspace/HSFDataExport/HSFDataExportBPELProcess" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/Oil_N_Gas_ISA_Workspace/HSFDataExport/HSFDataExportBPELProcess" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
+   <plnk:partnerLinkType name="HSFDataExportBPELProcess">
+      <plnk:role name="HSFDataExportBPELProcessProvider" portType="client:HSFDataExportBPELProcess"/>
+   </plnk:partnerLinkType>
+   <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/Oil_N_Gas_ISA_Workspace/HSFDataExport/HSFDataExportBPELProcess" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
+         <import namespace="http://xmlns.oracle.com/Oil_N_Gas_ISA_Workspace/HSFDataExport/HSFDataExportBPELProcess" schemaLocation="../Schemas/HSFDataExportBPELProcess.xsd"/>
+      </schema>
+   </wsdl:types>
+   <wsdl:message name="HSFDataExportBPELProcessRequestMessage">
+      <wsdl:part name="payload" element="client:process"/>
+   </wsdl:message>
+   <wsdl:portType name="HSFDataExportBPELProcess">
+      <wsdl:operation name="process">
+         <wsdl:input message="client:HSFDataExportBPELProcessRequestMessage"/>
+      </wsdl:operation>
+   </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,571 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Thu Jun 30 16:36:45 IST 2016
+  Author:  prabasu
+  Type: BPEL 2.0 Process
+  Purpose: One Way BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="ImportDataToPBSCFromHSF"
+         targetNamespace="http://xmlns.oracle.com/Oil_N_Gas_ISA_Workspace/ImportDataToPBSCFromHSF/ImportDataToPBSCFromHSF"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:client="http://xmlns.oracle.com/Oil_N_Gas_ISA_Workspace/ImportDataToPBSCFromHSF/ImportDataToPBSCFromHSF"
+         xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns1="http://pbcs.pradipta.com/"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns2="http://xmlns.oracle.com/ias/pcbpel/NotificationService"
+         xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/file/Oil_N_Gas_ISA_Workspace/ImportDataToPBSCFromHSF/Poll_HSF_dump_Files_For_PBCS_Import"
+         xmlns:ns4="http://xmlns.oracle.com/pcbpel/adapter/opaque/">
+    <import namespace="http://xmlns.oracle.com/pcbpel/adapter/file/Oil_N_Gas_ISA_Workspace/ImportDataToPBSCFromHSF/Poll_HSF_dump_Files_For_PBCS_Import"
+            location="../WSDLs/Poll_HSF_dump_Files_For_PBCS_Import.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"
+            ui:processWSDL="true"/>
+    <import namespace="http://pbcs.pradipta.com/" location="../WSDLs/ImportHSFdata.wsdl"
+            importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://xmlns.oracle.com/ias/pcbpel/NotificationService"
+            location="oramds:/soa/shared/workflow/NotificationService.wsdl"
+            importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://schemas.oracle.com/bpel/extension" location="../WSDLs/RuntimeFault.wsdl"
+            importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+    <partnerLinks>
+        <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+        <partnerLink name="Poll_HSF_dump_Files_For_PBCS_Import" partnerLinkType="ns3:Read_plt" myRole="Read_role"/>
+        <partnerLink name="PBCS_RestServices_SpringComponent" partnerLinkType="ns1:PBCS_RestServices_Component.test"
+                     partnerRole="ImportHSFdata"/>
+        <partnerLink name="NotificationService1" partnerLinkType="ns2:NotificationServiceLink"
+                     partnerRole="NotificationServiceProvider"/>
+    </partnerLinks>
+    <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+    <variables>
+        <!-- Reference to the message passed as input during initiation -->
+        <variable name="PBCSuserName" type="xsd:string"/>
+        <variable name="PBCSpassword" type="xsd:string"/>
+        <variable name="PBCSserverUrl" type="xsd:string"/>
+        <variable name="PBCSapiVersion" type="xsd:string"/>
+        <variable name="PBCSapplicationName" type="xsd:string"/>
+        <variable name="PBCSjobType" type="xsd:string"/>
+        <variable name="PBCSjobName" type="xsd:string"/>
+        <variable name="PBCSfilePath" type="xsd:string"/>
+        <variable name="PBCSfileName" type="xsd:string"/>
+        <variable name="PBCSinstanceId" type="xsd:string"/>
+        <variable name="PBCSlog4jlevel" type="xsd:string"/>
+        <variable name="PBCSlog4jLogFileLocation" type="xsd:string"/>
+        <variable name="Invoke_PBCS_deleteFile_InputVariable" messageType="ns1:deleteFileInput"/>
+        <variable name="Invoke_PBCS_deleteFile_OutputVariable" messageType="ns1:deleteFileOutput"/>
+        <variable name="Invoke_PBCS_uploadFile_InputVariable" messageType="ns1:uploadFileInput"/>
+        <variable name="Invoke_PBCS_uploadFile_OutputVariable" messageType="ns1:uploadFileOutput"/>
+        <variable name="Invoke_PBCS_ImportData_executeJob_InputVariable" messageType="ns1:executeJobInput"/>
+        <variable name="Invoke_PBCS_ImportData_executeJob_OutputVariable" messageType="ns1:executeJobOutput"/>
+        <variable name="receiveInput_Read_InputVariable" messageType="ns3:Read_msg"/>
+        <variable name="moveFile_error_InputVariable" messageType="ns1:moveFileInput"/>
+        <variable name="moveFile_error_OutputVariable" messageType="ns1:moveFileOutput"/>
+        <variable name="moveFile_success_InputVariable" messageType="ns1:moveFileInput"/>
+        <variable name="moveFile_success_OutputVariable" messageType="ns1:moveFileOutput"/>
+    </variables>
+    <faultHandlers>
+        <catchAll>
+            <sequence name="Sequence3">
+                <scope name="Email_ImportDataToPBSCFromHSF">
+                    <bpelx:annotation>
+                        <bpelx:pattern patternName="bpelx:email"></bpelx:pattern>
+                    </bpelx:annotation>
+                    <variables>
+                        <variable name="varNotificationReq" messageType="ns2:EmailNotificationRequest"/>
+                        <variable name="varNotificationResponse" messageType="ns2:ArrayOfResponse"/>
+                        <variable name="NotificationServiceFaultVariable"
+                                  messageType="ns2:NotificationServiceErrorMessage"/>
+                    </variables>
+                    <sequence name="Sequence4">
+                        <assign name="EmailParamsAssign">
+                            <copy>
+                                <from>string('Default')</from>
+                                <to variable="varNotificationReq" part="EmailPayload"><query>ns2:FromAccountName</query></to>
+                            </copy>
+                            <copy>
+                                <from>string('')</from>
+                                <to variable="varNotificationReq" part="EmailPayload"><query>ns2:Bcc</query></to>
+                            </copy>
+                            <copy>
+                                <from>string('')</from>
+                                <to variable="varNotificationReq" part="EmailPayload"><query>ns2:Cc</query></to>
+                            </copy>
+                            <copy>
+                                <from>string('')</from>
+                                <to variable="varNotificationReq" part="EmailPayload"><query>ns2:ReplyToAddress</query></to>
+                            </copy>
+                            <copy>
+                                <from>concat('ImportDataToPBSCFromHSF_Exception on Instance FlowID : ',ora:getFlowId() )</from>
+                                <to variable="varNotificationReq" part="EmailPayload"><query>ns2:Subject</query></to>
+                            </copy>
+                            <copy>
+                                <from>string('pradipta.basu@oracle.com;parvathy.radhakrishnan.nair@oracle.com;')</from>
+                                <to variable="varNotificationReq" part="EmailPayload"><query>ns2:To</query></to>
+                            </copy>
+                            <copy>
+                                <from>string('')</from>
+                                <to variable="varNotificationReq" part="EmailPayload"><query>ns2:Content/ns2:ContentBody</query></to>
+                            </copy>
+                            <copy>
+                                <from>string('text/html; charset=UTF-8')</from>
+                                <to variable="varNotificationReq" part="EmailPayload"><query>ns2:Content/ns2:MimeType</query></to>
+                            </copy>
+                        </assign>
+                        <invoke name="InvokeNotificationService" portType="ns2:NotificationService"
+                                partnerLink="NotificationService1" inputVariable="varNotificationReq"
+                                outputVariable="varNotificationResponse" operation="sendEmailNotification"/>
+                    </sequence>
+                </scope>
+                <exit name="Exit"/>
+            </sequence>
+        </catchAll>
+    </faultHandlers>
+    <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+    <sequence name="main">
+        <!-- Receive input from requestor. (Note: This maps to operation defined in ImportDataToPBSCFromHSF.wsdl) -->
+        <receive name="receiveInput" createInstance="yes" partnerLink="Poll_HSF_dump_Files_For_PBCS_Import"
+                 portType="ns3:Read_ptt" operation="Read" variable="receiveInput_Read_InputVariable">
+            <bpelx:fromProperties>
+                <bpelx:fromProperty name="jca.file.Directory" variable="PBCSfilePath"/>
+                <bpelx:fromProperty name="jca.file.FileName" variable="PBCSfileName"/>
+            </bpelx:fromProperties>
+        </receive>
+        <sequence name="assign_initial_Inputs">
+            <assign name="Assign_PBCS_Parameters">
+                <copy>
+                    <from>ora:getPreference("PBCSuserName")</from>
+                    <to>$PBCSuserName</to>
+                </copy>
+                <copy>
+                    <from>ora:getPreference("PBCSpassword")</from>
+                    <to>$PBCSpassword</to>
+                </copy>
+                <copy>
+                    <from>ora:getPreference("PBCSserverUrl")</from>
+                    <to>$PBCSserverUrl</to>
+                </copy>
+                <copy>
+                    <from>concat($PBCSfilePath,'/')</from>
+                    <to>$PBCSfilePath</to>
+                </copy>
+                <copy>
+                    <from>ora:getPreference("PBCSapiVersion")</from>
+                    <to>$PBCSapiVersion</to>
+                </copy>
+                <copy>
+                    <from>ora:getPreference("PBCSapplicationName")</from>
+                    <to>$PBCSapplicationName</to>
+                </copy>
+                <copy>
+                    <from>ora:getPreference("PBCSjobType")</from>
+                    <to>$PBCSjobType</to>
+                </copy>
+                <copy>
+                    <from>ora:getPreference("PBCSjobName")</from>
+                    <to>$PBCSjobName</to>
+                </copy>
+                <copy>
+                    <from>ora:getPreference("PBCSlog4jLevel")</from>
+                    <to>$PBCSlog4jlevel</to>
+                </copy>
+                <copy>
+                    <from>ora:getPreference("PBCSlog4jLogFileLocation")</from>
+                    <to>$PBCSlog4jLogFileLocation</to>
+                </copy>
+                <copy>
+                    <from>ora:getFlowId()</from>
+                    <to>$PBCSinstanceId</to>
+                </copy>
+            </assign>
+        </sequence>
+        <scope name="delete_File_at_begining">
+            <faultHandlers>
+                <catchAll>
+                    <sequence name="Sequence1">
+                        <empty name="Continue"/>
+                    </sequence>
+                </catchAll>
+            </faultHandlers>
+            <sequence name="delete_Files_at_begining">
+                <assign name="Assign_deleteFiles_Input">
+                    <copy>
+                        <from>$PBCSuserName</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/userName</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSlog4jlevel</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/log4jLevel</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSlog4jLogFileLocation</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/log4jLogFileLocation</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSinstanceId</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/instanceId</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSpassword</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/password</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSserverUrl</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/serverUrl</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSfileName</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/fileName</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSapplicationName</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/applicationName</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSapiVersion</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/apiVersion</to>
+                    </copy>
+                </assign>
+                <invoke name="Invoke_PBCS_deleteFile" partnerLink="PBCS_RestServices_SpringComponent"
+                        portType="ns1:ImportHSFdata" operation="deleteFile"
+                        inputVariable="Invoke_PBCS_deleteFile_InputVariable"
+                        outputVariable="Invoke_PBCS_deleteFile_OutputVariable" bpelx:invokeAsDetail="no"/>
+            </sequence>
+        </scope>
+        <scope name="upload_File">
+            <faultHandlers>
+                <catchAll>
+                    <sequence name="Sequence2">
+                        <assign name="Assign_moveFile_error">
+                            <copy>
+                                <from>$PBCSfilePath</from>
+                                <to>$moveFile_error_InputVariable.parameters/filePath</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSfileName</from>
+                                <to>$moveFile_error_InputVariable.parameters/fileName</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSinstanceId</from>
+                                <to>$moveFile_error_InputVariable.parameters/instanceId</to>
+                            </copy>
+                            <copy>
+                                <from>"ERROR"</from>
+                                <to>$moveFile_error_InputVariable.parameters/status</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSlog4jlevel</from>
+                                <to>$moveFile_error_InputVariable.parameters/log4jLevel</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSlog4jLogFileLocation</from>
+                                <to>$moveFile_error_InputVariable.parameters/log4jLogFileLocation</to>
+                            </copy>
+                        </assign>
+                        <invoke name="Invoke_moveFile_error" bpelx:invokeAsDetail="no"
+                            partnerLink="PBCS_RestServices_SpringComponent" portType="ns1:ImportHSFdata"
+                            operation="moveFile" inputVariable="moveFile_error_InputVariable"
+                            outputVariable="moveFile_error_OutputVariable"/>
+                        <rethrow name="RethrowFault"/>
+                    </sequence>
+                </catchAll>
+            </faultHandlers>
+            <sequence>
+                <assign name="Assign_uploadFiles_Input">
+                    <copy>
+                        <from>$PBCSuserName</from>
+                        <to>$Invoke_PBCS_uploadFile_InputVariable.parameters/userName</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSinstanceId</from>
+                        <to>$Invoke_PBCS_uploadFile_InputVariable.parameters/instanceId</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSlog4jlevel</from>
+                        <to>$Invoke_PBCS_uploadFile_InputVariable.parameters/log4jLevel</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSlog4jLogFileLocation</from>
+                        <to>$Invoke_PBCS_uploadFile_InputVariable.parameters/log4jLogFileLocation</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSpassword</from>
+                        <to>$Invoke_PBCS_uploadFile_InputVariable.parameters/password</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSserverUrl</from>
+                        <to>$Invoke_PBCS_uploadFile_InputVariable.parameters/serverUrl</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSapiVersion</from>
+                        <to>$Invoke_PBCS_uploadFile_InputVariable.parameters/apiVersion</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSapplicationName</from>
+                        <to>$Invoke_PBCS_uploadFile_InputVariable.parameters/applicationName</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSfilePath</from>
+                        <to>$Invoke_PBCS_uploadFile_InputVariable.parameters/filePath</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSfileName</from>
+                        <to>$Invoke_PBCS_uploadFile_InputVariable.parameters/fileName</to>
+                    </copy>
+                </assign>
+                <invoke name="Invoke_PBCS_uploadFile" bpelx:invokeAsDetail="no"
+                        partnerLink="PBCS_RestServices_SpringComponent" portType="ns1:ImportHSFdata"
+                        operation="uploadFile" inputVariable="Invoke_PBCS_uploadFile_InputVariable"
+                        outputVariable="Invoke_PBCS_uploadFile_OutputVariable"/>
+            </sequence>
+        </scope>
+        <scope name="import_Data">
+            <faultHandlers>
+                <catchAll>
+                    <sequence>
+                        <assign name="Assign_moveFile_error">
+                            <copy>
+                                <from>$PBCSfilePath</from>
+                                <to>$moveFile_error_InputVariable.parameters/filePath</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSfileName</from>
+                                <to>$moveFile_error_InputVariable.parameters/fileName</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSinstanceId</from>
+                                <to>$moveFile_error_InputVariable.parameters/instanceId</to>
+                            </copy>
+                            <copy>
+                                <from>"ERROR"</from>
+                                <to>$moveFile_error_InputVariable.parameters/status</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSlog4jlevel</from>
+                                <to>$moveFile_error_InputVariable.parameters/log4jLevel</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSlog4jLogFileLocation</from>
+                                <to>$moveFile_error_InputVariable.parameters/log4jLogFileLocation</to>
+                            </copy>
+                        </assign>
+                        <invoke name="Invoke_moveFile_error" bpelx:invokeAsDetail="no"
+                                partnerLink="PBCS_RestServices_SpringComponent" portType="ns1:ImportHSFdata"
+                                operation="moveFile" inputVariable="moveFile_error_InputVariable"
+                                outputVariable="moveFile_error_OutputVariable"/>
+                        <assign name="Assign_deleteFiles_Input">
+                            <copy>
+                                <from>$PBCSuserName</from>
+                                <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/userName</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSinstanceId</from>
+                                <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/instanceId</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSlog4jlevel</from>
+                                <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/log4jLevel</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSlog4jLogFileLocation</from>
+                                <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/log4jLogFileLocation</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSpassword</from>
+                                <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/password</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSserverUrl</from>
+                                <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/serverUrl</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSfileName</from>
+                                <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/fileName</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSapplicationName</from>
+                                <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/applicationName</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSapiVersion</from>
+                                <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/apiVersion</to>
+                            </copy>
+                        </assign>
+                        <invoke name="Invoke_PBCS_deleteFile" partnerLink="PBCS_RestServices_SpringComponent"
+                                portType="ns1:ImportHSFdata" operation="deleteFile"
+                                inputVariable="Invoke_PBCS_deleteFile_InputVariable"
+                                outputVariable="Invoke_PBCS_deleteFile_OutputVariable" bpelx:invokeAsDetail="no"/>
+                        <rethrow name="RethrowFault"/>
+                    </sequence>
+                </catchAll>
+            </faultHandlers>
+            <sequence>
+                <assign name="Assign_ImportData_Input">
+                    <copy>
+                        <from>$PBCSuserName</from>
+                        <to>$Invoke_PBCS_ImportData_executeJob_InputVariable.parameters/userName</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSinstanceId</from>
+                        <to>$Invoke_PBCS_ImportData_executeJob_InputVariable.parameters/instanceId</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSlog4jlevel</from>
+                        <to>$Invoke_PBCS_ImportData_executeJob_InputVariable.parameters/log4jLevel</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSlog4jLogFileLocation</from>
+                        <to>$Invoke_PBCS_ImportData_executeJob_InputVariable.parameters/log4jLogFileLocation</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSpassword</from>
+                        <to>$Invoke_PBCS_ImportData_executeJob_InputVariable.parameters/password</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSserverUrl</from>
+                        <to>$Invoke_PBCS_ImportData_executeJob_InputVariable.parameters/serverUrl</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSapiVersion</from>
+                        <to>$Invoke_PBCS_ImportData_executeJob_InputVariable.parameters/apiVersion</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSapplicationName</from>
+                        <to>$Invoke_PBCS_ImportData_executeJob_InputVariable.parameters/applicationName</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSjobType</from>
+                        <to>$Invoke_PBCS_ImportData_executeJob_InputVariable.parameters/jobType</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSjobName</from>
+                        <to>$Invoke_PBCS_ImportData_executeJob_InputVariable.parameters/jobName</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSfileName</from>
+                        <to>$Invoke_PBCS_ImportData_executeJob_InputVariable.parameters/fileName</to>
+                    </copy>
+                </assign>
+                <invoke name="Invoke_PBCS_ImportData" partnerLink="PBCS_RestServices_SpringComponent"
+                        portType="ns1:ImportHSFdata" operation="executeJob" bpelx:invokeAsDetail="no"
+                        inputVariable="Invoke_PBCS_ImportData_executeJob_InputVariable"
+                        outputVariable="Invoke_PBCS_ImportData_executeJob_OutputVariable"/>
+            </sequence>
+        </scope>
+        <assign name="Assign_moveFile_success">
+                            <copy>
+                                <from>$PBCSfilePath</from>
+                                <to>$moveFile_success_InputVariable.parameters/filePath</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSfileName</from>
+                                <to>$moveFile_success_InputVariable.parameters/fileName</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSinstanceId</from>
+                                <to>$moveFile_success_InputVariable.parameters/instanceId</to>
+                            </copy>
+                            <copy>
+                                <from>"SUCCESS"</from>
+                                <to>$moveFile_success_InputVariable.parameters/status</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSlog4jlevel</from>
+                                <to>$moveFile_success_InputVariable.parameters/log4jLevel</to>
+                            </copy>
+                            <copy>
+                                <from>$PBCSlog4jLogFileLocation</from>
+                                <to>$moveFile_success_InputVariable.parameters/log4jLogFileLocation</to>
+                            </copy>
+                        </assign>
+                        <invoke name="Invoke_moveFile_success" bpelx:invokeAsDetail="no"
+                                partnerLink="PBCS_RestServices_SpringComponent" portType="ns1:ImportHSFdata"
+                                operation="moveFile" inputVariable="moveFile_success_InputVariable"
+                                outputVariable="moveFile_success_OutputVariable"/>
+        <scope name="delete_File_at_end">
+            <faultHandlers>
+                <catch faultName="bpelx:remoteFault" faultVariable="runtimeFaultVar"
+                       faultMessageType="bpelx:RuntimeFaultMessage">
+                    <sequence>
+                        <rethrow name="RethrowFault"/>
+                    </sequence>
+                </catch>
+            </faultHandlers>
+            <sequence>
+                <assign name="Assign_deleteFiles_Input">
+                    <copy>
+                        <from>$PBCSuserName</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/userName</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSinstanceId</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/instanceId</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSlog4jlevel</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/log4jLevel</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSlog4jLogFileLocation</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/log4jLogFileLocation</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSpassword</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/password</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSserverUrl</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/serverUrl</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSfileName</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/fileName</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSapplicationName</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/applicationName</to>
+                    </copy>
+                    <copy>
+                        <from>$PBCSapiVersion</from>
+                        <to>$Invoke_PBCS_deleteFile_InputVariable.parameters/apiVersion</to>
+                    </copy>
+                </assign>
+                <invoke name="Invoke_PBCS_deleteFile" bpelx:invokeAsDetail="no"
+                        partnerLink="PBCS_RestServices_SpringComponent" portType="ns1:ImportHSFdata"
+                        operation="deleteFile" inputVariable="Invoke_PBCS_deleteFile_InputVariable"
+                        outputVariable="Invoke_PBCS_deleteFile_OutputVariable"/>
+            </sequence>
+        </scope>
+    </sequence>
+</process>

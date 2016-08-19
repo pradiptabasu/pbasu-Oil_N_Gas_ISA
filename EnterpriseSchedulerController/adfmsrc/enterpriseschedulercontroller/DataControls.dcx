@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DataControlConfigs xmlns="http://xmlns.oracle.com/adfm/configuration" version="12.1.3.10.8" id="DataControls"
+                    Package="enterpriseschedulercontroller">
+  <AdapterDataControl id="EnterpriseSchedulerServices" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adfinternal.model.adapter.webservice.WSDefinition" SupportsTransactions="false"
+                      SupportsSortCollection="false" SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="enterpriseschedulercontroller.EnterpriseSchedulerServices"
+                      BeanClass="enterpriseschedulercontroller.EnterpriseSchedulerServices"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <Source>
+      <definition xmlns="http://xmlns.oracle.com/adfm/adapter/webservice" name="EnterpriseSchedulerServices"
+                  version="1.0" provider="oracle.adfinternal.model.adapter.webservice.provider.soap.SOAPProvider"
+                  wsdl="enterpriseschedulercontroller/ESSWebService.wsdl" ensureKeyAttribute="true"
+                  useWSDLIdentity="true" dcStructureVersion="2" UsePersistedStructure="false">
+        <service name="ESSWebService" namespace="http://xmlns.oracle.com/scheduler"
+                 connection="EnterpriseSchedulerServices">
+          <port name="SchedulerServiceImplPort">
+            <operation name="setAsyncRequestStatus"/>
+            <operation name="holdRequest"/>
+            <operation name="deleteRequest"/>
+            <operation name="cancelRequest"/>
+            <operation name="getRequestExecutionContext"/>
+            <operation name="submitRequest"/>
+            <operation name="setNLSOptions"/>
+            <operation name="setStepsArgs"/>
+            <operation name="getCompletionStatus"/>
+            <operation name="setSubmitArgs"/>
+            <operation name="getRequestDetail"/>
+            <operation name="addPPActions"/>
+            <operation name="releaseRequest"/>
+            <operation name="submitRecurringRequest"/>
+            <operation name="purgeRequest"/>
+            <operation name="getRequestState"/>
+          </port>
+        </service>
+      </definition>
+    </Source>
+  </AdapterDataControl>
+</DataControlConfigs>

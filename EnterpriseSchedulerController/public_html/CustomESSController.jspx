@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="CustomESSController.jspx" id="d1" binding="#{backing_CustomESSController.d1}">
+            <af:messages id="m1" binding="#{backing_CustomESSController.m1}"/>
+            <af:form id="f1" binding="#{backing_CustomESSController.f1}">
+                <af:panelGridLayout id="pgl1" binding="#{backing_CustomESSController.pgl1}">
+                    <af:gridRow height="50px" id="gr1" binding="#{backing_CustomESSController.gr1}">
+                        <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1"
+                                     binding="#{backing_CustomESSController.gc1}"
+                                     inlineStyle="background-color:Yellow;">
+                            <!-- Header -->
+                            <af:outputText value="Strategic Planning For Oil &amp; Gas : Enterprise Scheduler Service Controller"
+                                           id="ot1" binding="#{backing_CustomESSController.ot1}"
+                                           inlineStyle="color:Red; font-size:x-large; text-align:center; alignment-adjust:central; vertical-align:middle; margin-top: 10px; background-color:Yellow;"/>
+                        </af:gridCell>
+                    </af:gridRow>
+                    <af:gridRow height="100%" id="gr2" binding="#{backing_CustomESSController.gr2}">
+                        <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc2"
+                                     binding="#{backing_CustomESSController.gc2}">
+                            <af:decorativeBox theme="dark" id="db1" binding="#{backing_CustomESSController.db1}">
+                                <f:facet name="center">
+                                    <af:decorativeBox theme="medium" id="db2"
+                                                      binding="#{backing_CustomESSController.db2}">
+                                        <f:facet name="center">
+                                            <!-- Content -->
+                                            <af:panelGroupLayout id="pgl2" binding="#{backing_CustomESSController.pgl2}"
+                                                                 valign="middle" halign="center">
+                                                <table border="1"
+                                                       title="Job Control for Hyperion Strategic Finance to Oracle PBCS Data Sync"
+                                                       style="border-bottom-left-radius:2px 2px; border-bottom-right-radius:2px 2px; border-color:#52c6ff; outline-width:thick;">
+                                                    <tr>
+                                                        <td colspan="2"
+                                                            style="color:Orange; font-size:large; text-align:center;">Job
+                                                                                                                      Control
+                                                                                                                      for
+                                                                                                                      Hyperion
+                                                                                                                      Strategic
+                                                                                                                      Finance
+                                                                                                                      to
+                                                                                                                      Oracle
+                                                                                                                      PBCS
+                                                                                                                      Data
+                                                                                                                      Sync</td>
+                                                    </tr>
+                                                     
+                                                    <tr>
+                                                        <td>
+                                                            <af:panelHeader text="Fetch Details of the Job" id="ph3"
+                                                                            binding="#{backing_CustomESSController.ph3}">
+                                                                <af:panelFormLayout id="pfl3"
+                                                                                    binding="#{backing_CustomESSController.pfl3}">
+                                                                    <af:inputText value="33787"
+                                                                                  label="Scheduled Job ID"
+                                                                                  required="#{bindings.requestId2.hints.mandatory}"
+                                                                                  columns="#{bindings.requestId2.hints.displayWidth}"
+                                                                                  maximumLength="#{bindings.requestId2.hints.precision}"
+                                                                                  shortDesc="#{bindings.requestId2.hints.tooltip}"
+                                                                                  id="it3"
+                                                                                  binding="#{backing_CustomESSController.it3}"
+                                                                                  placeholder="Enter Default ID : 33787"
+                                                                                  readOnly="true">
+                                                                        <f:validator binding="#{bindings.requestId2.validator}"/>
+                                                                        <af:convertNumber groupingUsed="false"
+                                                                                          pattern="#{bindings.requestId2.format}"/>
+                                                                    </af:inputText>
+                                                                    <af:button actionListener="#{bindings.getRequestDetail.execute}"
+                                                                               text="Get Job Details"
+                                                                               disabled="#{!bindings.getRequestDetail.enabled}"
+                                                                               id="b3"
+                                                                               binding="#{backing_CustomESSController.b3}"/>
+                                                                </af:panelFormLayout>
+                                                            </af:panelHeader>
+                                                        </td>
+                                                        <td>
+                                                            <af:panelLabelAndMessage label="Current Job State (WAIT means RUNNING)"
+                                                                                     id="plam1"
+                                                                                     binding="#{backing_CustomESSController.plam1}">
+                                                                <af:outputText value="#{bindings.state.inputValue}"
+                                                                               shortDesc="#{bindings.state.hints.tooltip}"
+                                                                               id="ot2"
+                                                                               binding="#{backing_CustomESSController.ot2}"/>
+                                                            </af:panelLabelAndMessage><af:panelLabelAndMessage label=" Recurring Schedule"
+                                                                                                               id="plam2"
+                                                                                                               binding="#{backing_CustomESSController.plam2}">
+                                                                <af:outputText value="#{bindings.name.inputValue}"
+                                                                               shortDesc="#{bindings.name.hints.tooltip}"
+                                                                               id="ot3"
+                                                                               binding="#{backing_CustomESSController.ot3}"/>
+                                                            </af:panelLabelAndMessage><af:panelLabelAndMessage label="Job Name"
+                                                                                                               id="plam3"
+                                                                                                               binding="#{backing_CustomESSController.plam3}">
+                                                                <af:outputText value="#{bindings.name1.inputValue}"
+                                                                               shortDesc="#{bindings.name1.hints.tooltip}"
+                                                                               id="ot4"
+                                                                               binding="#{backing_CustomESSController.ot4}"/>
+                                                            </af:panelLabelAndMessage>
+                                                        </td>
+                                                    </tr><tr>
+                                                        <td>
+                                                            <af:panelHeader text="Pause HSF-PBCS Data Sync" id="ph1"
+                                                                            binding="#{backing_CustomESSController.ph1}"
+                                                                            inlineStyle="width:488px;">
+                                                                <af:panelFormLayout id="pfl1"
+                                                                                    binding="#{backing_CustomESSController.pfl1}">
+                                                                    <af:inputText value="33787"
+                                                                                  label="Scheduled Job ID"
+                                                                                  required="#{bindings.requestId.hints.mandatory}"
+                                                                                  columns="#{bindings.requestId.hints.displayWidth}"
+                                                                                  maximumLength="#{bindings.requestId.hints.precision}"
+                                                                                  shortDesc="#{bindings.requestId.hints.tooltip}"
+                                                                                  id="it1"
+                                                                                  binding="#{backing_CustomESSController.it1}"
+                                                                                  placeholder="Enter Default ID : 33787"
+                                                                                  readOnly="true">
+                                                                        <f:validator binding="#{bindings.requestId.validator}"/>
+                                                                        <af:convertNumber groupingUsed="false"
+                                                                                          pattern="#{bindings.requestId.format}"/>
+                                                                    </af:inputText>
+                                                                    <af:button actionListener="#{bindings.holdRequest.execute}"
+                                                                               text="Pause Job"
+                                                                               disabled="#{!bindings.holdRequest.enabled}"
+                                                                               id="b1"
+                                                                               binding="#{backing_CustomESSController.b1}"
+                                                                               inlineStyle="color:Red; font-size:small;"/>
+                                                                </af:panelFormLayout>
+                                                            </af:panelHeader>
+                                                        </td>
+                                                        <td>
+                                                            <af:panelHeader text="Resume HSF-PBCS Data Sync" id="ph2"
+                                                                            binding="#{backing_CustomESSController.ph2}"
+                                                                            inlineStyle="width:489px; color:Aqua;">
+                                                                <af:panelFormLayout id="pfl2"
+                                                                                    binding="#{backing_CustomESSController.pfl2}">
+                                                                    <af:inputText value="33787"
+                                                                                  label="Scheduled Job ID"
+                                                                                  required="#{bindings.requestId1.hints.mandatory}"
+                                                                                  columns="#{bindings.requestId1.hints.displayWidth}"
+                                                                                  maximumLength="#{bindings.requestId1.hints.precision}"
+                                                                                  shortDesc="#{bindings.requestId1.hints.tooltip}"
+                                                                                  id="it2"
+                                                                                  binding="#{backing_CustomESSController.it2}"
+                                                                                  placeholder="Enter Default ID : 33787"
+                                                                                  readOnly="true">
+                                                                        <f:validator binding="#{bindings.requestId1.validator}"/>
+                                                                        <af:convertNumber groupingUsed="false"
+                                                                                          pattern="#{bindings.requestId1.format}"/>
+                                                                    </af:inputText>
+                                                                    <af:button actionListener="#{bindings.releaseRequest.execute}"
+                                                                               text="Resume Job"
+                                                                               disabled="#{!bindings.releaseRequest.enabled}"
+                                                                               id="b2"
+                                                                               binding="#{backing_CustomESSController.b2}"
+                                                                               inlineStyle="color:Green; font-size:small;"/>
+                                                                </af:panelFormLayout>
+                                                            </af:panelHeader>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </af:panelGroupLayout>
+                                        </f:facet>
+                                    </af:decorativeBox>
+                                </f:facet>
+                            </af:decorativeBox>
+                        </af:gridCell>
+                    </af:gridRow>
+                </af:panelGridLayout>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_CustomESSController-->
+</jsp:root>

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" xmlns:tns="http://TargetNamespace.com/WritefileReference" targetNamespace="http://TargetNamespace.com/WritefileReference" elementFormDefault="qualified" attributeFormDefault="unqualified" nxsd:version="NXSD" nxsd:stream="chars" nxsd:encoding="US-ASCII">
+   <xsd:element name="ListofPBCSAccountsData">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="PBCSAccountData" minOccurs="1" maxOccurs="unbounded">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="AccountName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="\t" nxsd:quotedBy="&quot;"/>
+                     <xsd:element name="Entity" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="\t" nxsd:quotedBy="&quot;"/>
+                     <xsd:element name="Month" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="\t" nxsd:quotedBy="&quot;"/>
+                     <xsd:element name="FinYear" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="\t" nxsd:quotedBy="&quot;"/>
+                     <xsd:element name="Budget" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="\t" nxsd:quotedBy="&quot;"/>
+                     <xsd:element name="Version" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="\t" nxsd:quotedBy="&quot;"/>
+                     <xsd:element name="Value" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" nxsd:quotedBy="&quot;"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:annotation>
+      <xsd:appinfo>NXSDSAMPLE=/C:/Users/pkradhak/Documents/Project-Oil and Gas/HSF_input_PBCS_Budget_DataFile_timestamp.txt</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

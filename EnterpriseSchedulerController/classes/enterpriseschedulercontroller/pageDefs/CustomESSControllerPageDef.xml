@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="CustomESSControllerPageDef"
+                Package="enterpriseschedulercontroller.pageDefs">
+  <parameters>
+    <parameter id="jobId" value="33787"/>
+  </parameters>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.Long" Name="holdRequest_requestId" IsQueriable="false"/>
+      <variable Type="java.lang.Long" Name="releaseRequest_requestId" IsQueriable="false"/>
+      <variable Type="java.lang.Long" Name="getRequestDetail_requestId" IsQueriable="false"/>
+    </variableIterator>
+    <methodIterator Binds="getRequestDetail.result" DataControl="EnterpriseSchedulerServices" RangeSize="25"
+                    BeanClass="enterpriseschedulercontroller.EnterpriseSchedulerServices.getRequestDetail.requestDetail"
+                    id="getRequestDetailIterator"/>
+    <accessorIterator MasterBinding="getRequestDetailIterator" Binds="scheduleId" RangeSize="25"
+                      DataControl="EnterpriseSchedulerServices"
+                      BeanClass="enterpriseschedulercontroller.EnterpriseSchedulerServices.getRequestDetail.requestDetail.jobDefinitionId"
+                      id="scheduleIdIterator"/>
+    <accessorIterator MasterBinding="getRequestDetailIterator" Binds="jobDefinitionId" RangeSize="25"
+                      DataControl="EnterpriseSchedulerServices"
+                      BeanClass="enterpriseschedulercontroller.EnterpriseSchedulerServices.getRequestDetail.requestDetail.jobDefinitionId"
+                      id="jobDefinitionIdIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="holdRequest" RequiresUpdateModel="true" Action="invokeMethod" MethodName="holdRequest"
+                  IsViewObjectMethod="false" DataControl="EnterpriseSchedulerServices"
+                  InstanceName="data.EnterpriseSchedulerServices">
+      <NamedData NDName="requestId" NDValue="33787" NDType="java.lang.Long"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="requestId">
+      <AttrNames>
+        <Item Value="holdRequest_requestId"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="releaseRequest" RequiresUpdateModel="true" Action="invokeMethod" MethodName="releaseRequest"
+                  IsViewObjectMethod="false" DataControl="EnterpriseSchedulerServices"
+                  InstanceName="data.EnterpriseSchedulerServices">
+      <NamedData NDName="requestId" NDValue="33787" NDType="java.lang.Long"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="requestId1">
+      <AttrNames>
+        <Item Value="releaseRequest_requestId"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="getRequestDetail" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getRequestDetail"
+                  IsViewObjectMethod="false" DataControl="EnterpriseSchedulerServices"
+                  InstanceName="data.EnterpriseSchedulerServices"
+                  ReturnName="data.EnterpriseSchedulerServices.methodResults.getRequestDetail_EnterpriseSchedulerServices_getRequestDetail_result">
+      <NamedData NDName="requestId" NDValue="33787" NDType="java.lang.Long"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="requestId2">
+      <AttrNames>
+        <Item Value="getRequestDetail_requestId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getRequestDetailIterator" id="state">
+      <AttrNames>
+        <Item Value="state"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="scheduleIdIterator" id="name">
+      <AttrNames>
+        <Item Value="name"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="jobDefinitionIdIterator" id="name1">
+      <AttrNames>
+        <Item Value="name"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>
